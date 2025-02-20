@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: fc199c73af81d4c3c8c235e747be1177
+guid: d8bddab72f78d634eaa78e3edde83353
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 977343143680798272
-    second: coroana_0
+      213: -7588715916042580035
+    second: bossattack_0
   - first:
-      213: 5806422639345421235
-    second: coroana_1
+      213: -7846391957450945686
+    second: bossattack_1
+  - first:
+      213: 4185935141832163346
+    second: bossattack_2
+  - first:
+      213: 6730213704541743004
+    second: bossattack_3
+  - first:
+      213: -3255775865662933180
+    second: bossattack_4
+  - first:
+      213: -6882255798611549092
+    second: bossattack_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,45 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coroana_0
+      name: bossattack_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 60
-        height: 52
+        x: 0
+        y: 3
+        width: 128
+        height: 123
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 04ee1c63968309d00800000000000000
-      internalID: 977343143680798272
+      spriteID: dbfcde2c4177fa690800000000000000
+      internalID: -7588715916042580035
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coroana_1
+      name: bossattack_1
       rect:
         serializedVersion: 2
-        x: 13
-        y: 47
-        width: 8
-        height: 6
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3bb48f170ae849050800000000000000
-      internalID: 5806422639345421235
+      spriteID: a6b87af26140c1390800000000000000
+      internalID: -7846391957450945686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossattack_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 91
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2100bbd55dd671a30800000000000000
+      internalID: 4185935141832163346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossattack_3
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 47
+        width: 16
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c972da1c4b5866d50800000000000000
+      internalID: 6730213704541743004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossattack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 447feda991921d2d0800000000000000
+      internalID: -3255775865662933180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossattack_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c54e26e90d05d70a0800000000000000
+      internalID: -6882255798611549092
       vertices: []
       indices: 
       edges: []
@@ -163,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 72845925d231e6141906a76a312b16e1
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +273,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      coroana_0: 977343143680798272
-      coroana_1: 5806422639345421235
+      bossattack_0: -7588715916042580035
+      bossattack_1: -7846391957450945686
+      bossattack_2: 4185935141832163346
+      bossattack_3: 6730213704541743004
+      bossattack_4: -3255775865662933180
+      bossattack_5: -6882255798611549092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

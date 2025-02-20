@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: bcfd5812cc856f1e99307b551548a998
+guid: 4115596d65603a94eb1c5042e294e9ff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4335657269374507253
-    second: inel_0
+      213: 5878203096085206695
+    second: spritesheet (4)_0
+  - first:
+      213: 8541543648840734694
+    second: spritesheet (4)_1
+  - first:
+      213: 3316518890299791053
+    second: spritesheet (4)_2
+  - first:
+      213: -1704431106280724860
+    second: spritesheet (4)_3
+  - first:
+      213: 4207788018275496487
+    second: spritesheet (4)_4
+  - first:
+      213: 5975726449670904513
+    second: spritesheet (4)_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +128,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: inel_0
+      name: spritesheet (4)_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 2
-        width: 32
-        height: 46
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f858e0b0595b2c30800000000000000
-      internalID: 4335657269374507253
+      spriteID: 7a692c36292939150800000000000000
+      internalID: 5878203096085206695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet (4)_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e755ae81b8a98670800000000000000
+      internalID: 8541543648840734694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet (4)_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 486e20670f4a858e0800000000000000
+      internalID: -1704431106280724860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet (4)_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 3
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca5a839b8b0ee250800000000000000
+      internalID: 5975726449670904513
       vertices: []
       indices: 
       edges: []
@@ -138,7 +219,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1d6b8bf5797ba014e879efa09de5c681
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +229,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      inel_0: 4335657269374507253
+      spritesheet (4)_0: 5878203096085206695
+      spritesheet (4)_1: 8541543648840734694
+      spritesheet (4)_3: -1704431106280724860
+      spritesheet (4)_5: 5975726449670904513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
