@@ -7,6 +7,9 @@ namespace Items.pickups
         [SerializeField] private ItemData itemData; // Scriptable Object reference
         [SerializeField] private int amount = 1;
         [SerializeField] private UiHandle uiHandle;
+        [SerializeField] private string customItemName; // ✅ Public field for custom name
+        [SerializeField] private string customDescription; // ✅ Public field for custom description
+
         private bool _hasUi;
         private SpriteRenderer _sprite;
         private PlayerMovement _playerMovement;
@@ -69,6 +72,10 @@ namespace Items.pickups
 
                 if (_playerMovement != null && _hasUi)
                 {
+                    string displayName = string.IsNullOrEmpty(customItemName) ? itemData.itemName : customItemName;
+                    string displayDescription = string.IsNullOrEmpty(customDescription) ? $"Press E to pick up {amount}x {itemData.itemName}" : customDescription;
+                    
+                    uiHandle.SetPickupText(displayName, displayDescription);
                     uiHandle.CanvasEnable();
                 }
             }

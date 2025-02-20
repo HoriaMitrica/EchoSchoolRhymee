@@ -3,9 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
-    public string itemName; // Name of the item
-    public Sprite icon; // The UI icon
-    public bool isStackable; // Can it have a quantity?
-    public int maxStack; // Max quantity if stackable
-    public bool canConsume; // If true, item is consumed on use
+    public string itemName;
+    public Sprite icon;
+    public bool isStackable;
+    public int maxStack;
+    public bool canConsume;
+    
+    public bool isReadable; // ✅ New field: Can this item be read?
+    public string textContent; // ✅ New field: The text displayed when reading it
 }

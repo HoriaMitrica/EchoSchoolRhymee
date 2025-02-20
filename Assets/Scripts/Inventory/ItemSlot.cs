@@ -4,13 +4,39 @@ using TMPro;
 
 public class ItemSlot : MonoBehaviour
 {
-    public Image itemIcon;
+    public Image backgroundImage; // ✅ Background (always visible)
+    public Image itemIcon; // ✅ Foreground (turns transparent when empty)
     public TextMeshProUGUI quantityText;
+    
     private ItemData currentItem;
     private int quantity = 0;
+    private bool isSelected = false; // ✅ Tracks if the slot is selected
+    
+    private Color defaultBackgroundColor;
+    private Color selectedBackgroundColor = new Color(1f, 1f, 0f, 1f); // ✅ Yellow tint
+    private Color transparentIconColor = new Color(1f, 1f, 1f, 0f); // ✅ Transparent Icon when empty
+    private Color visibleIconColor = new Color(1f, 1f, 1f, 1f); // ✅ Fully visible icon when item is present
 
     private void Awake()
     {
+        if (backgroundImage == null)
+        {
+            Debug.LogError("ItemSlot: Background Image is missing!");
+        }
+        else
+        {
+            defaultBackgroundColor = backgroundImage.color; // ✅ Store default color
+        }
+
+        if (itemIcon == null)
+        {
+            Debug.LogError("ItemSlot: ItemIcon Image is missing!");
+        }
+        else
+        {
+            itemIcon.color = transparentIconColor; // ✅ Start fully transparent
+        }
+
         if (quantityText == null)
         {
             quantityText = GetComponentInChildren<TextMeshProUGUI>();
@@ -34,6 +60,7 @@ public class ItemSlot : MonoBehaviour
         quantity = amount;
         itemIcon.sprite = newItem.icon;
         itemIcon.enabled = true;
+        itemIcon.color = visibleIconColor; // ✅ Make icon visible when an item is added
         UpdateQuantity();
     }
 
@@ -59,6 +86,7 @@ public class ItemSlot : MonoBehaviour
         quantity = 0;
         itemIcon.sprite = null;
         itemIcon.enabled = false;
+        itemIcon.color = transparentIconColor; // ✅ Hide icon when empty
         if (quantityText != null)
         {
             quantityText.text = "";
@@ -100,5 +128,14 @@ public class ItemSlot : MonoBehaviour
     public ItemData GetItem()
     {
         return currentItem;
+    }
+
+    public void SetSelected(bool selected)
+    {
+        isSelected = selected;
+        if (backgroundImage != null)
+        {
+            backgroundImage.color = isSelected ? selectedBackgroundColor : defaultBackgroundColor;
+        }
     }
 }

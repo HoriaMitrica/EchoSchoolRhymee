@@ -15,16 +15,31 @@ public class UIManager : MonoBehaviour
     {
         // Ensure only one UIManager exists
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
-        UpdateLivesUI(3);
+            return;
+        }
     }
 
+    void Start() // ✅ Move UpdateLivesUI to Start to ensure UI elements exist
+    {
+        if (heartPrefab == null || livesPanel == null)
+        {
+            Debug.LogError("UIManager: Missing references! Assign heartPrefab and livesPanel in the Inspector.");
+            return;
+        }
+
+        UpdateLivesUI(3); // ✅ Now executed after UI is initialized
+    }
 
     public void UpdateLivesUI(int lives)
     {
-        Debug.Log("test "+lives);
+        Debug.Log($"UIManager: Updating lives UI to {lives} hearts.");
+
         // Clear existing hearts
         foreach (GameObject heart in heartIcons)
         {
@@ -36,7 +51,15 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < lives; i++)
         {
             GameObject heart = Instantiate(heartPrefab, livesPanel);
-            heartIcons.Add(heart);
+            if (heart != null)
+            {
+                heartIcons.Add(heart);
+                Debug.Log($"UIManager: Heart {i + 1} created.");
+            }
+            else
+            {
+                Debug.LogError($"UIManager: Failed to instantiate heart {i + 1}.");
+            }
         }
     }
 }

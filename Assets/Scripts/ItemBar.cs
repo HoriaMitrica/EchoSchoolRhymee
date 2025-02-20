@@ -1,17 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UI; // ✅ Fixes the missing 'Image' error
+using UnityEngine.UI;
+using TMPro; // ✅ Import TextMeshPro
 
 public class ItemBar : MonoBehaviour
 {
     public GameObject slotPrefab;
     public Transform itemBarPanel;
+    public TextMeshProUGUI itemText; // ✅ Public parameter for ItemText
+
     private List<ItemSlot> slots = new List<ItemSlot>();
-    private int selectedIndex = 0; // Selected inventory slot
+    private int selectedIndex = 0;
+    
+    public LetterUI letterUI; // ✅ Reference to Letter UI
 
     void Start()
     {
-        GenerateSlots();
+        GenerateSlots(); // ✅ Ensure this method exists
+        letterUI = FindObjectOfType<LetterUI>(); // ✅ Ensure `LetterUI` is found at runtime
+        UpdateItemText(); // ✅ Set initial text
     }
 
     private void GenerateSlots()
@@ -42,7 +49,7 @@ public class ItemBar : MonoBehaviour
         UpdateSelection();
     }
 
-    void Update()
+    private void Update()
     {
         HandleSlotSelection();
         HandleItemUsage();
@@ -56,6 +63,7 @@ public class ItemBar : MonoBehaviour
             {
                 selectedIndex = i;
                 UpdateSelection();
+                UpdateItemText(); // ✅ Update item text when switching slots
                 break;
             }
         }
@@ -73,11 +81,27 @@ public class ItemBar : MonoBehaviour
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            Image slotImage = slots[i].GetComponent<Image>();
-            if (slotImage != null)
-            {
-                slotImage.color = (i == selectedIndex) ? Color.yellow : Color.white;
-            }
+            slots[i].SetSelected(i == selectedIndex);
+        }
+    }
+
+    private void UpdateItemText()
+    {
+        if (itemText == null)
+        {
+            Debug.LogError("ItemBar: ItemText reference is missing!");
+            return;
+        }
+
+        if (slots[selectedIndex] == null || slots[selectedIndex].IsEmpty())
+        {
+            itemText.text = ""; // ✅ Empty if no item
+        }
+        else
+        {
+            ItemSlot selectedSlot = slots[selectedIndex];
+            ItemData selectedItem = selectedSlot.GetItem();
+            itemText.text = selectedItem != null ? selectedItem.itemName : ""; // ✅ Update with item name
         }
     }
 
@@ -100,10 +124,25 @@ public class ItemBar : MonoBehaviour
 
         Debug.Log($"Using {selectedItem.itemName}...");
 
+        if (selectedItem.isReadable) // ✅ Open Letter UI for readable items
+        {
+            if (letterUI != null)
+            {
+                letterUI.OpenLetter(selectedItem.textContent);
+            }
+            else
+            {
+                Debug.LogError("ItemBar: LetterUI is missing! Ensure it exists in the scene.");
+            }
+            return; // ✅ Do not reduce quantity when reading
+        }
+
         if (selectedItem.canConsume)
         {
             selectedSlot.ReduceQuantity(1);
         }
+
+        UpdateItemText(); // ✅ Update text after using an item
     }
 
     public bool AddItem(ItemData item, int amount)
@@ -121,6 +160,7 @@ public class ItemBar : MonoBehaviour
             if (!slot.IsEmpty() && slot.TryAddItem(item, amount))
             {
                 Debug.Log($"ItemBar: Stacked {amount}x {item.itemName}.");
+                UpdateItemText(); // ✅ Update text after adding an item
                 return true;
             }
         }
@@ -131,6 +171,7 @@ public class ItemBar : MonoBehaviour
             {
                 slot.SetItem(item, amount);
                 Debug.Log($"ItemBar: Added {amount}x {item.itemName} to an empty slot.");
+                UpdateItemText(); // ✅ Update text after adding an item
                 return true;
             }
         }
