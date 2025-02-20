@@ -4,21 +4,24 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 5f;
     public float jumpForce = 8f;
+
     private Rigidbody2D _rigidbody2D;
     private float _horizontal;
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer _spriteRenderer;
     private Animator _animator;
-    private bool _isGrounded = true;
+    private bool _isGrounded;
+
     private static readonly int isMoving = Animator.StringToHash("isMoving");
     private static readonly int isJumping = Animator.StringToHash("isJumping");
-
-
 
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.freezeRotation = true;
+
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
         _animator.SetBool(isJumping, false);
     }
 
@@ -31,37 +34,33 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
             Jump();
-            _animator.SetBool(isJumping, true);
-        } 
-         _animator.SetBool(isJumping, !_isGrounded);
+        }
+
+        // Update animator based on movement
+        _animator.SetBool(isMoving, _horizontal != 0);
     }
 
     void FixedUpdate()
     {
         // Apply movement
         _rigidbody2D.linearVelocity = new Vector2(_horizontal * Speed, _rigidbody2D.linearVelocity.y);
-        if (_horizontal != 0)
-        {
-            _animator.SetBool(isMoving, true);
-        }
-        else
-        {
-            _animator.SetBool(isMoving, false);
 
-        }
-        if (_horizontal < 0)
+        // Flip sprite direction based on movement
+        if (_horizontal > 0)
         {
-            Vector3 playerScale = transform.localScale;
-            playerScale.x = playerScale.x*1;
+            _spriteRenderer.flipX = false;
         }
-
+        else if (_horizontal < 0)
+        {
+            _spriteRenderer.flipX = true;
+        }
     }
 
     void Jump()
     {
         _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpForce);
-        _isGrounded = false; 
-    
+        _isGrounded = false;
+        _animator.SetBool(isJumping, true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
+            _animator.SetBool(isJumping, false);
         }
     }
 

@@ -1,16 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using TMPro; // ✅ Import TextMeshPro
+using TMPro;
 
 public class ItemBar : MonoBehaviour
 {
     public GameObject slotPrefab;
     public Transform itemBarPanel;
     public TextMeshProUGUI itemText; // ✅ Public parameter for ItemText
-
+   public Transform playerTransform;
+ 
     private List<ItemSlot> slots = new List<ItemSlot>();
     private int selectedIndex = 0;
+    public GameObject fireballPrefab;
     
     public LetterUI letterUI; // ✅ Reference to Letter UI
 
@@ -71,7 +73,7 @@ public class ItemBar : MonoBehaviour
 
     private void HandleItemUsage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             UseSelectedItem();
         }
@@ -105,7 +107,7 @@ public class ItemBar : MonoBehaviour
         }
     }
 
-    private void UseSelectedItem()
+     private void UseSelectedItem()
     {
         if (slots[selectedIndex] == null || slots[selectedIndex].IsEmpty())
         {
@@ -124,7 +126,7 @@ public class ItemBar : MonoBehaviour
 
         Debug.Log($"Using {selectedItem.itemName}...");
 
-        if (selectedItem.isReadable) // ✅ Open Letter UI for readable items
+        if (selectedItem.isReadable)
         {
             if (letterUI != null)
             {
@@ -134,7 +136,12 @@ public class ItemBar : MonoBehaviour
             {
                 Debug.LogError("ItemBar: LetterUI is missing! Ensure it exists in the scene.");
             }
-            return; // ✅ Do not reduce quantity when reading
+            return;
+        }
+
+        if (selectedItem.itemName == "Fireball") // ✅ Check if it's a Fireball
+        {
+            ShootFireball();
         }
 
         if (selectedItem.canConsume)
@@ -142,7 +149,7 @@ public class ItemBar : MonoBehaviour
             selectedSlot.ReduceQuantity(1);
         }
 
-        UpdateItemText(); // ✅ Update text after using an item
+        UpdateItemText();
     }
 
     public bool AddItem(ItemData item, int amount)
@@ -179,4 +186,22 @@ public class ItemBar : MonoBehaviour
         Debug.Log("ItemBar: Inventory full, could not add item.");
         return false;
     }
+    private void ShootFireball()
+{
+    if (fireballPrefab == null || playerTransform == null)
+    {
+        Debug.LogError("ItemBar: Fireball Prefab or Player Transform is missing!");
+        return;
+    }
+
+    float direction = playerTransform.localScale.x > 0 ? 1f : -1f;
+
+    Vector3 spawnPosition = playerTransform.position + new Vector3(direction * 0.6f, 0, 0);
+    
+    GameObject fireball = Instantiate(fireballPrefab, spawnPosition, Quaternion.identity);
+    fireball.GetComponent<ProjectileBehavior>().Initialize(new Vector2(direction, 0));
+
+    Debug.Log("Fireball shot!");
+}
+
 }

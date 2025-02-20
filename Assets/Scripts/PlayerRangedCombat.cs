@@ -12,9 +12,5 @@ public class PlayerRangedCombat : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire3"))
-        {
-            Instantiate(ProjectilePrefab, LaunchOffset.position, transform.rotation);
-        }
     }
 }
