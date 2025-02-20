@@ -71,7 +71,7 @@ public class ItemBar : MonoBehaviour
 
     private void HandleItemUsage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             UseSelectedItem();
         }

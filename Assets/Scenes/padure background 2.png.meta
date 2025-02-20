@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b890557a0bd666442ad0362ddae0663a
+guid: d2b8b0ae473073b429e307e2d6658c19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8657983284532559695
-    second: Layer-60-copy-2_0
+      213: 2872693918049548484
+    second: padure background 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Layer-60-copy-2_0
+      name: padure background 2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 609
-        height: 211
+        width: 7700
+        height: 4961
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b0ca2e131aa8d780800000000000000
-      internalID: -8657983284532559695
+      spriteID: 4c8b4c5f5ebddd720800000000000000
+      internalID: 2872693918049548484
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Layer-60-copy-2_0: -8657983284532559695
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
