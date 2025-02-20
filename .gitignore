@@ -10,6 +10,12 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# Ignore TextMeshPro auto-generated files
+/Assets/TextMesh Pro/Resources
+/Assets/TextMesh Pro/Examples & Extras
+/Assets/TextMesh Pro/Shaders
+!/Assets/TextMesh Pro/Resources/TMP Settings.asset
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/

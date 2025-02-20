@@ -10,11 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float _horizontal;
     private Collider2D _collision;
-    
-    private bool _isGrounded=true;
-    
 
-
+    private bool _isGrounded = true;
+     private int lives=2;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -24,43 +22,47 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         _horizontal = Input.GetAxisRaw("Horizontal");
-
-        
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            lives--;
+             UIManager.Instance.UpdateLivesUI(lives);
+        }
+                if(Input.GetKeyDown(KeyCode.W))
+        {
+            lives++;
+             UIManager.Instance.UpdateLivesUI(lives);
+        }
         if (_horizontal != 0)
         {
             _rigidbody2D.linearVelocity = new Vector2(_horizontal * Speed, _rigidbody2D.linearVelocity.y);
-
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded == true)
         {
             Jump();
-
         }
-
-       
     }
-     void Jump()
-        {
+    void Jump()
+    {
 
-            _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpForce);
-            _isGrounded=false;
-        }
+        _rigidbody2D.linearVelocity = new Vector2(_rigidbody2D.linearVelocity.x, jumpForce);
+        _isGrounded = false;
+    }
     private void OnTriggerEnter2D(Collider2D _collision)
     {
-       
-    if (_collision.gameObject.CompareTag("Ground"))
+
+        if (_collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = true;
         }
     }
     private void OnTriggerExit2D(Collider2D _collision)
     {
-        
-    if (_collision.gameObject.CompareTag("Ground"))
+
+        if (_collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = false;
         }
-        
+
     }
 }
