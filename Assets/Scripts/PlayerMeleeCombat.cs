@@ -9,12 +9,14 @@ public class PlayerCombat : MonoBehaviour
     private float Cooldown = 2f;
     [SerializeField] private float _startCooldown;
     public int damage = 1;
-    private int _lives = 3;
+    public int _lives = 3;
     private Animator _animator;
     [SerializeField] private Animator Player;
 
     private static readonly int Attack = Animator.StringToHash("Attack");
-            private static readonly int isHit = Animator.StringToHash("isHit");
+    private static readonly int isHit = Animator.StringToHash("isHit");
+    private static readonly int isDead = Animator.StringToHash("isDead");
+
 
 
 
@@ -22,10 +24,10 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         damage = 1;
-        
-        _animator = GetComponent<Animator>(); 
+
+        _animator = GetComponent<Animator>();
         _animator.SetBool(Attack, false);
-                _animator.SetBool(isHit, false);
+        _animator.SetBool(isHit, false);
 
     }
     void Update()
@@ -35,21 +37,20 @@ public class PlayerCombat : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 {
-                    _animator.SetTrigger("Attack"); 
-                                        
+                    _animator.SetBool(Attack,true);
 
-                    
                 }
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayer);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
-                    //Debug.Log("damage"+damage);
                     enemiesToDamage[i].GetComponent<Enemy>().TakeDamage(damage);
+
                     enemiesToDamage[i].GetComponent<Box>().BoxTakeDamage(damage);
                 }
 
             }
             _animator.SetBool(Attack, false);
+
 
 
             Cooldown = _startCooldown;
@@ -63,10 +64,13 @@ public class PlayerCombat : MonoBehaviour
     public void PlayerTakeDamage(int damageToPlayer)
     {
         _lives -= 1;
-        _animator.SetTrigger("isHit"); 
+        //Debug.Log("takendamage");
+        _animator.SetBool(isHit,true);
         if (_lives <= 0)
         {
-            Debug.Log("Player Died :C"); //aici se schimba scena in aia cu Game Over 
+            
+            _animator.SetBool(isDead, true);
+
         }
 
     }
